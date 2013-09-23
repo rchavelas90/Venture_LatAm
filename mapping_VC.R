@@ -20,7 +20,7 @@ str(market_cap2)
 ##R# googleVis site https://code.google.com/p/google-motion-charts-with-r/
 ##R# Region specified by the specs by google 
 ##R# https://google-developers.appspot.com/chart/interactive/docs/gallery/geochart#Continent_Hierarchy
-
+library(googleVis)
 colax <-"{ minValue : 0, maxValue : 100, colors : ['#FF383D','#F0AA26','#9DE216','#07D40B']}"
 bgcless <- '#E8E8E8'
 ##R#Kavrayskiy vii projection (world)
@@ -46,7 +46,7 @@ ca <- gvisGeoChart(market_cap2, locationvar="Country", colorvar="Overall_score",
                                 datalessRegionColor=bgcless))
 
 america <- gvisMerge(ca,sa,horizontal=FALSE,tableOptions ="cellspacing=0")
-all <- gvisMerge(america,world,horizontal=T,tableOptions ="cellpadding=0",chartid="Venture capital Latin America")
+all <- gvisMerge(america,world,horizontal=T,tableOptions ="cellpadding=0",chartid="Venture_capital_Latin_America")
 plot(all)
 
 
