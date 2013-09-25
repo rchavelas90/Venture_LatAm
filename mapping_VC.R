@@ -21,14 +21,14 @@ str(market_cap2)
 ##R# Region specified by the specs by google 
 ##R# https://google-developers.appspot.com/chart/interactive/docs/gallery/geochart#Continent_Hierarchy
 library(googleVis)
-colax <-"{ minValue : 0, maxValue : 100, colors : ['#FF383D','#F0AA26','#9DE216','#07D40B']}"
+colax <-"{ minValue : 50, maxValue : 100, colors : ['E5BB00','#66B203','#05800A']}"
 bgcless <- '#E8E8E8'
 ##R#Kavrayskiy vii projection (world)
-world <- gvisGeoChart(market_cap2, locationvar="Country", colorvar="Overall_score",
+eu <- gvisGeoChart(market_cap2, locationvar="Country", colorvar="Overall_score",
                   options=list(region="150",
                                colorAxis=colax,
                                projection="kavrayskiy-vii"
-                               ,width=800, height=640,legend="none",
+                               ,width=660, height=320,legend="none",
                                datalessRegionColor=bgcless))
 
 sa <- gvisGeoChart(market_cap2, locationvar="Country", colorvar="Overall_score",
@@ -45,8 +45,11 @@ ca <- gvisGeoChart(market_cap2, locationvar="Country", colorvar="Overall_score",
                                 ,width=660, height=320,legend="none",
                                 datalessRegionColor=bgcless))
 
+tb <- gvisTable(market_cap2[1:7],options=list(alternatigRowSytle=F, height=520,sortColumn=1,sortAscending=F))
+
 america <- gvisMerge(ca,sa,horizontal=FALSE,tableOptions ="cellspacing=0")
-all <- gvisMerge(america,world,horizontal=T,tableOptions ="cellpadding=0",chartid="Venture_capital_Latin_America")
+eutb <- gvisMerge(eu,tb,horizontal=FALSE,tableOptions ="cellspacing=0")
+all <- gvisMerge(america,tb,horizontal=T,tableOptions ="cellpadding=0",chartid="Venture_capital_Latin_America")
 plot(all)
 
 
